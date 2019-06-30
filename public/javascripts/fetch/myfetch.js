@@ -1,4 +1,12 @@
-//import { text } from "../../../../Library/Caches/typescript/2.6/node_modules/@types/body-parser";
+let item1OnClick = () => {
+    alert(1);
+}
+
+let item2OnClick = () => {
+    alert(2);
+}
+
+/*
 
 setTimeout(() => {
     let btn = document.createElement('button');
@@ -256,3 +264,5 @@ setTimeout(() => {
     document.getElementById('main-page').appendChild(btn);
     
 }, 1000);
+
+*/
