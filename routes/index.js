@@ -11,8 +11,12 @@ router.get('/', function(req, res, next) {
         route: 'fetch'
       },
       {
-        name: 'xhr',
+        name: 'XMLHttpRequest',
         route: 'xhr'
+      },
+      {
+        name : 'Upload',
+        route : 'upload'
       }
     ]
   });

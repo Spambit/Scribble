@@ -1,3 +1,4 @@
 {
-    "html" : "xhrtest.html"
+    "html" : "xhrtest.html",
+    "js" : "myxhr.js"
 }
