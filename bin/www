@@ -1,0 +1,137 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+const fs = require('fs');
+var path = require('path');
+var privateKeyPath = path.join(__dirname,'..', 'encryption', 'myprivate.key');
+var certPath = path.join(__dirname,'..', 'encryption', 'mycert.cert');
+const key = fs.readFileSync(privateKeyPath);
+const cert = fs.readFileSync(certPath);
+const options = {
+  key: key,
+  cert: cert
+};
+var debug = require('debug')('scribble:server');
+var http = require('http');
+var https = require('https');
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var httpPort = normalizePort('3000');
+var httpsPort = normalizePort('443');
+
+/**
+ * Create HTTP server.
+ */
+
+var httpserver = http.createServer(app).listen(httpPort);
+var httpsserver = https.createServer(options, app).listen(httpsPort);
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+httpserver.on('error', onHttpError);
+httpserver.on('listening', onHttpListening);
+httpsserver.on('error', onHttpsError);
+httpsserver.on('listening', onHttpsListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+  var port = parseInt(val, 10);
+
+  if (isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onHttpError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof httpPort === 'string'
+    ? 'Pipe ' + httpPort
+    : 'Port ' + httpPort;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+function onHttpsError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
+
+  var bind = typeof httpsPort === 'string'
+    ? 'Pipe ' + httpsPort
+    : 'Port ' + httpsPort;
+
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onHttpListening() {
+  var addr = httpserver.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+  console.log('Http server running on ' + bind);
+}
+
+function onHttpsListening() {
+  var addr = httpsserver.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+  console.log('Https server running on ' + bind);
+}

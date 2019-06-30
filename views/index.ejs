@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title><%= title %></title>
+  <base href="./" target="_top">
+  <meta charset='utf-8' />
+  <meta http-equiv='X-UA-Compatible' content='IE=Edge' />
+  <meta name='viewport' content='user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0' />
+  <meta name='apple-mobile-web-app-capable' content='yes' />
+  <meta name='apple-mobile-web-app-status-bar-style' content='white' />
+  <link rel="stylesheet" href="./css/bootstrap.css" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/gallery.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/theme.css">
+  <script src="./jquery.js" crossorigin="anonymous"></script>
+  <script src="./popper.js" crossorigin="anonymous"></script>
+  <script src="./js/bootstrap.js" crossorigin="anonymous"></script>
+  <script src='./javascripts/cookietest.js'></script>
+  <script src='./javascripts/nativeBridge.js'></script>
+  <script src='./javascripts/app.js'></script>
+  <script src='./javascripts/dynamic-tags.js'></script>
+  <script src='./javascripts/uploader.js'></script>
+  <script src='./javascripts/fs.js'></script>
+  <script src='./javascripts/camera.js'></script>
+  <script src='./javascripts/fetch.js'></script>
+  <script src='./javascripts/xhr.js'></script>
+  <script src='./javascripts/capture.js'></script>
+</head>
+
+<body id='body' onload="App.start()">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Scribble</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <% for(navItem of navItems) {%>
+        <li class="nav-item">
+          <a class="nav-link" onclick="window.App.onChangeState(event)" href=<%= navItem.route %>><%=navItem.name%><span class="sr-only">(current)</span></a>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="route"></div>
+  </div>
+  <!-- <div id='input-area'>
+            <form>
+                <input id= "urltextbox" type="url" align="left" name="nodeserverurl" placeholder="Node Server URL" required>
+            </form>
+        </div>
+        <div id='main-page'>
+            <div id="wrap">
+                <div class="field">
+                    <ul class="file-selector-options" style="list-style-type:none;">
+                        <li><input type="file" multiple id="myfile" name="myfile" class="rm-input"
+                                onchange="window.App.uploader.selectFile();" /></li>
+                        <li><input type="button" value="Upload" onClick="window.App.uploader.upload()" class="rm-button" /></li>
+                        <li><input type="button" value="Upload Raw" onClick="window.App.uploader.uploadRaw()" class="rm-button" /></li>
+                    </ul>
+                </div>
+                <progress id="progressBar" value="0" max="100" class="rm-progress"></progress>
+                <div id="percentageCalc"></div>
+            </div>
+        </div>  -->
+</body>
+
+</html>
