@@ -15,7 +15,7 @@ router.use('/', (req, res) => {
       console.error('Request aborted by the user')
     })
     .on('fileBegin', (name, file) => {
-      file.path = __dirname + '/upload/' + file.name
+      file.path = __dirname + '/../upload/' + file.name
     })
     .on('error', (err) => {
       console.error('Error', err)

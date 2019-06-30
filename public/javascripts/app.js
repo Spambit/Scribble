@@ -68,7 +68,6 @@ App.prototype = {
 			return;
 
 		var el = document.createElement('script');
-		el.setAttribute("type", "text/javascript");
 		el.setAttribute("src", filepath);
 		$('head').append(el);
 	},
