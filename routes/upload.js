@@ -3,7 +3,7 @@ var router = express.Router();
 const formidable = require('formidable')
 var util = require('../util')
 
-router.use('/', (req, res) => {
+router.post('/', (req, res) => {
   new formidable.IncomingForm().parse(req)
     .on('field', (name, field) => {
       console.log('Field', name, field)
@@ -28,7 +28,7 @@ router.use('/', (req, res) => {
 })
 
 let uploadFilename = 0;
-router.use("/raw", function (req, res) {
+router.post("/raw", function (req, res) {
   console.log("Old filename was :" + uploadFilename);
   uploadFilename++;
   console.log("New filename is :" + uploadFilename);

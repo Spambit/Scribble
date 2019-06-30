@@ -12,6 +12,13 @@ router.get("/", function (req, res) {
   res.send("<h1>Welcome fetch</h1>");
 });
 
+router.get("/ok", function (req, res) {
+  //logCookie(req);
+  util.logHeaders(req);
+  //res.cookie("myCookie-OK", "myValue-OK");
+  res.send("<h1>Welcome fetch ok</h1>");
+});
+
 router.post("/post", function (req, res) {
   //logCookie(req);
   //res.json(req.body);
